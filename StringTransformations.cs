@@ -3,6 +3,8 @@ using System.Collections.Generic;
 //using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Configuration;
+using System.Xml;
 
 namespace StringTransformations
 {
@@ -20,8 +22,11 @@ namespace StringTransformations
             title = title.TrimStart(CharsToTrim);
             title = title.Replace(@"-", " - ");
             title = Regex.Replace(title, @"  +", " ");
-            
-          
+            title = Functions.checkAlwaysDeleteList(title);
+            //var appSettings = ConfigurationManager.AppSettings.
+            //string s = PT.Properties.Settings.Default.siteNames;
+
+
             Words = title.Split(' ');
             for (i = 0; i < Words.Length; i++)
             {
@@ -90,9 +95,7 @@ namespace StringTransformations
                 title = title.Replace(@" - on ", " - On ");
                 title = title.Replace(@" - am ", " - Am ");
                 title = title.Replace(@" - of ", " - Of ");
-                title = title.Replace(@" - or ", " - Or ");
-
-                title = title.Replace(@"(zaycev.net)", "");
+                title = title.Replace(@" - or ", " - Or ");                
 
 
                 if (Regex.IsMatch(title,@"\("))
@@ -205,10 +208,23 @@ namespace StringTransformations
 
         static public string Replacer(string title, string first_string, string second_string)
         {
-            return title.Replace(first_string, second_string);
- 
-        
+            return title.Replace(first_string, second_string);         
         }
-    
+
+        //------------------------------------------------------------------------------------------------------------------------
+
+        static public string checkAlwaysDeleteList(string title)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("..\\..\\ptStrings.xml");
+            XmlNodeList nodeList = doc.GetElementsByTagName("sName");
+            foreach (XmlElement el in nodeList)
+            {
+                title = title.Replace(el.InnerText, "");
+            }
+            return title;
+        }
+
+
     }
 }

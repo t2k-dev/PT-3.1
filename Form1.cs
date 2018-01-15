@@ -9,8 +9,13 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Collections;
-//
+using System.Configuration;
+
 using StringTransformations;
+using System.Xml;
+using System.Xml.Linq;
+
+
 
 namespace PT
 {
@@ -18,11 +23,38 @@ namespace PT
     {
         ArrayList MyList = new ArrayList();
         ArrayList OldList = new ArrayList();
-        
+
+        void addAlwaysDeleteItem(string str)
+        {            
+            XmlDocument doc = new XmlDocument();
+            doc.Load("..\\..\\ptStrings.xml");
+            XmlNode element = doc.CreateElement("sName");
+            element.InnerText = str;
+            doc.GetElementsByTagName("siteNames")[0].AppendChild(element);
+            //doc.GetElementById("siteNames").AppendChild(element);
+            doc.Save("..\\..\\ptStrings.xml");
+            fillAlwaysDeleteList();
+        }
+
+        void fillAlwaysDeleteList()
+        {
+            lbAlwaysDelete.Items.Clear();
+            XmlDocument doc = new XmlDocument();
+            doc.Load("..\\..\\ptStrings.xml");
+            XmlNodeList nodeList = doc.GetElementsByTagName("sName");
+            foreach (XmlElement el in nodeList)
+            {
+                lbAlwaysDelete.Items.Add(el.InnerText);
+            }
+        }
+
+
+
         public Form1()
         {
             InitializeComponent();
-            this.Height = 338;
+            /*Считываем список строк на удаление*/
+            fillAlwaysDeleteList();
         }
 
         public void ClearLb()
@@ -66,7 +98,8 @@ namespace PT
 
         public string RefreshTitle(string title)
         {
-            string result = title;
+            string result = title;            
+
             if (chbAddArtist.Checked)
             {
                 result = Functions.AddArtist(result, tbArtist.Text);
@@ -383,5 +416,26 @@ namespace PT
             MyList.Clear();
         }
 
+        private void btnAddAlwaysDelete_Click(object sender, EventArgs e)
+        {
+            
+            if (!String.IsNullOrEmpty(tbAddAlwaysDelete.Text))
+                addAlwaysDeleteItem(tbAddAlwaysDelete.Text);
+        }
+
+        private void btnDeleteAlwaysList_Click(object sender, EventArgs e)
+        {
+            /*Удаляем из списка элемент*/
+            if (lbAlwaysDelete.SelectedIndex>=0){
+                XmlDocument doc = new XmlDocument();
+                doc.Load("..\\..\\ptStrings.xml");
+                XmlNode element = doc.SelectSingleNode(String.Format("//PT/siteNames/sName[text() = '{0}']",lbAlwaysDelete.SelectedItem.ToString()));
+                XmlNode outer = element.ParentNode;
+                outer.RemoveChild(element);
+                doc.Save("..\\..\\ptStrings.xml");
+                fillAlwaysDeleteList();
+                
+            }
+        }
     }
 }

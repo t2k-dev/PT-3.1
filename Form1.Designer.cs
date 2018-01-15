@@ -41,7 +41,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbOld = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.bCancel = new System.Windows.Forms.Button();
+            this.bRefresh = new System.Windows.Forms.Button();
+            this.bChangeAll = new System.Windows.Forms.Button();
+            this.bClear = new System.Windows.Forms.Button();
+            this.bAdd = new System.Windows.Forms.Button();
+            this.bChange = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAddAlwaysDelete = new System.Windows.Forms.Button();
+            this.lbAlwaysDelete = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tbSecond_String = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,12 +61,8 @@
             this.chbDelOrNot = new System.Windows.Forms.CheckBox();
             this.chbDef = new System.Windows.Forms.CheckBox();
             this.ttHint = new System.Windows.Forms.ToolTip(this.components);
-            this.bCancel = new System.Windows.Forms.Button();
-            this.bRefresh = new System.Windows.Forms.Button();
-            this.bChangeAll = new System.Windows.Forms.Button();
-            this.bClear = new System.Windows.Forms.Button();
-            this.bAdd = new System.Windows.Forms.Button();
-            this.bChange = new System.Windows.Forms.Button();
+            this.tbAddAlwaysDelete = new System.Windows.Forms.TextBox();
+            this.btnDeleteAlwaysList = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -165,7 +170,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.bCancel);
             this.panel2.Controls.Add(this.bRefresh);
             this.panel2.Controls.Add(this.bChangeAll);
@@ -178,9 +182,86 @@
             this.panel2.Size = new System.Drawing.Size(418, 45);
             this.panel2.TabIndex = 15;
             // 
+            // bCancel
+            // 
+            this.bCancel.Image = ((System.Drawing.Image)(resources.GetObject("bCancel.Image")));
+            this.bCancel.Location = new System.Drawing.Point(291, 5);
+            this.bCancel.Name = "bCancel";
+            this.bCancel.Size = new System.Drawing.Size(32, 34);
+            this.bCancel.TabIndex = 6;
+            this.ttHint.SetToolTip(this.bCancel, "Cancel all changes");
+            this.bCancel.UseVisualStyleBackColor = true;
+            this.bCancel.Click += new System.EventHandler(this.bUndo_Click);
+            // 
+            // bRefresh
+            // 
+            this.bRefresh.Image = ((System.Drawing.Image)(resources.GetObject("bRefresh.Image")));
+            this.bRefresh.Location = new System.Drawing.Point(165, 5);
+            this.bRefresh.Name = "bRefresh";
+            this.bRefresh.Size = new System.Drawing.Size(40, 34);
+            this.bRefresh.TabIndex = 5;
+            this.bRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ttHint.SetToolTip(this.bRefresh, "Refresh the list");
+            this.bRefresh.UseVisualStyleBackColor = true;
+            this.bRefresh.Click += new System.EventHandler(this.bRefresh_Click);
+            // 
+            // bChangeAll
+            // 
+            this.bChangeAll.Image = ((System.Drawing.Image)(resources.GetObject("bChangeAll.Image")));
+            this.bChangeAll.Location = new System.Drawing.Point(248, 5);
+            this.bChangeAll.Name = "bChangeAll";
+            this.bChangeAll.Size = new System.Drawing.Size(37, 34);
+            this.bChangeAll.TabIndex = 4;
+            this.bChangeAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ttHint.SetToolTip(this.bChangeAll, "Change all the titles");
+            this.bChangeAll.UseVisualStyleBackColor = true;
+            this.bChangeAll.Click += new System.EventHandler(this.bChangeAll_Click);
+            // 
+            // bClear
+            // 
+            this.bClear.Image = ((System.Drawing.Image)(resources.GetObject("bClear.Image")));
+            this.bClear.Location = new System.Drawing.Point(119, 5);
+            this.bClear.Name = "bClear";
+            this.bClear.Size = new System.Drawing.Size(40, 34);
+            this.bClear.TabIndex = 2;
+            this.bClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ttHint.SetToolTip(this.bClear, "Clear the list");
+            this.bClear.UseVisualStyleBackColor = true;
+            this.bClear.Click += new System.EventHandler(this.bClear_Click);
+            // 
+            // bAdd
+            // 
+            this.bAdd.Image = ((System.Drawing.Image)(resources.GetObject("bAdd.Image")));
+            this.bAdd.Location = new System.Drawing.Point(76, 5);
+            this.bAdd.Name = "bAdd";
+            this.bAdd.Size = new System.Drawing.Size(37, 34);
+            this.bAdd.TabIndex = 1;
+            this.bAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ttHint.SetToolTip(this.bAdd, "Add new files to the list");
+            this.bAdd.UseVisualStyleBackColor = true;
+            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
+            // 
+            // bChange
+            // 
+            this.bChange.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bChange.BackgroundImage")));
+            this.bChange.Image = ((System.Drawing.Image)(resources.GetObject("bChange.Image")));
+            this.bChange.Location = new System.Drawing.Point(211, 5);
+            this.bChange.Name = "bChange";
+            this.bChange.Size = new System.Drawing.Size(31, 34);
+            this.bChange.TabIndex = 3;
+            this.bChange.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ttHint.SetToolTip(this.bChange, "Change the selected title");
+            this.bChange.UseVisualStyleBackColor = true;
+            this.bChange.Click += new System.EventHandler(this.bChange_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox1.Controls.Add(this.btnDeleteAlwaysList);
+            this.groupBox1.Controls.Add(this.tbAddAlwaysDelete);
+            this.groupBox1.Controls.Add(this.btnAddAlwaysDelete);
+            this.groupBox1.Controls.Add(this.lbAlwaysDelete);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.tbSecond_String);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -193,9 +274,36 @@
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox1.Location = new System.Drawing.Point(6, 309);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(403, 90);
+            this.groupBox1.Size = new System.Drawing.Size(403, 255);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
+            // 
+            // btnAddAlwaysDelete
+            // 
+            this.btnAddAlwaysDelete.Location = new System.Drawing.Point(185, 131);
+            this.btnAddAlwaysDelete.Name = "btnAddAlwaysDelete";
+            this.btnAddAlwaysDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnAddAlwaysDelete.TabIndex = 20;
+            this.btnAddAlwaysDelete.Text = "Add";
+            this.btnAddAlwaysDelete.UseVisualStyleBackColor = true;
+            this.btnAddAlwaysDelete.Click += new System.EventHandler(this.btnAddAlwaysDelete_Click);
+            // 
+            // lbAlwaysDelete
+            // 
+            this.lbAlwaysDelete.FormattingEnabled = true;
+            this.lbAlwaysDelete.Location = new System.Drawing.Point(6, 160);
+            this.lbAlwaysDelete.Name = "lbAlwaysDelete";
+            this.lbAlwaysDelete.Size = new System.Drawing.Size(173, 82);
+            this.lbAlwaysDelete.TabIndex = 19;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 115);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Always delete these strings:";
             // 
             // tbSecond_String
             // 
@@ -287,83 +395,28 @@
             this.chbDef.UseVisualStyleBackColor = true;
             this.chbDef.CheckedChanged += new System.EventHandler(this.chbDef_CheckedChanged);
             // 
-            // bCancel
+            // tbAddAlwaysDelete
             // 
-            this.bCancel.Image = ((System.Drawing.Image)(resources.GetObject("bCancel.Image")));
-            this.bCancel.Location = new System.Drawing.Point(291, 5);
-            this.bCancel.Name = "bCancel";
-            this.bCancel.Size = new System.Drawing.Size(32, 34);
-            this.bCancel.TabIndex = 6;
-            this.ttHint.SetToolTip(this.bCancel, "Cancel all changes");
-            this.bCancel.UseVisualStyleBackColor = true;
-            this.bCancel.Click += new System.EventHandler(this.bUndo_Click);
+            this.tbAddAlwaysDelete.Location = new System.Drawing.Point(7, 131);
+            this.tbAddAlwaysDelete.Name = "tbAddAlwaysDelete";
+            this.tbAddAlwaysDelete.Size = new System.Drawing.Size(172, 20);
+            this.tbAddAlwaysDelete.TabIndex = 21;
             // 
-            // bRefresh
+            // btnDeleteAlwaysList
             // 
-            this.bRefresh.Image = ((System.Drawing.Image)(resources.GetObject("bRefresh.Image")));
-            this.bRefresh.Location = new System.Drawing.Point(165, 5);
-            this.bRefresh.Name = "bRefresh";
-            this.bRefresh.Size = new System.Drawing.Size(40, 34);
-            this.bRefresh.TabIndex = 5;
-            this.bRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ttHint.SetToolTip(this.bRefresh, "Refresh the list");
-            this.bRefresh.UseVisualStyleBackColor = true;
-            this.bRefresh.Click += new System.EventHandler(this.bRefresh_Click);
-            // 
-            // bChangeAll
-            // 
-            this.bChangeAll.Image = ((System.Drawing.Image)(resources.GetObject("bChangeAll.Image")));
-            this.bChangeAll.Location = new System.Drawing.Point(248, 5);
-            this.bChangeAll.Name = "bChangeAll";
-            this.bChangeAll.Size = new System.Drawing.Size(37, 34);
-            this.bChangeAll.TabIndex = 4;
-            this.bChangeAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ttHint.SetToolTip(this.bChangeAll, "Change all the titles");
-            this.bChangeAll.UseVisualStyleBackColor = true;
-            this.bChangeAll.Click += new System.EventHandler(this.bChangeAll_Click);
-            // 
-            // bClear
-            // 
-            this.bClear.Image = ((System.Drawing.Image)(resources.GetObject("bClear.Image")));
-            this.bClear.Location = new System.Drawing.Point(119, 5);
-            this.bClear.Name = "bClear";
-            this.bClear.Size = new System.Drawing.Size(40, 34);
-            this.bClear.TabIndex = 2;
-            this.bClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ttHint.SetToolTip(this.bClear, "Clear the list");
-            this.bClear.UseVisualStyleBackColor = true;
-            this.bClear.Click += new System.EventHandler(this.bClear_Click);
-            // 
-            // bAdd
-            // 
-            this.bAdd.Image = ((System.Drawing.Image)(resources.GetObject("bAdd.Image")));
-            this.bAdd.Location = new System.Drawing.Point(76, 5);
-            this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(37, 34);
-            this.bAdd.TabIndex = 1;
-            this.bAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ttHint.SetToolTip(this.bAdd, "Add new files to the list");
-            this.bAdd.UseVisualStyleBackColor = true;
-            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
-            // 
-            // bChange
-            // 
-            this.bChange.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bChange.BackgroundImage")));
-            this.bChange.Image = ((System.Drawing.Image)(resources.GetObject("bChange.Image")));
-            this.bChange.Location = new System.Drawing.Point(211, 5);
-            this.bChange.Name = "bChange";
-            this.bChange.Size = new System.Drawing.Size(31, 34);
-            this.bChange.TabIndex = 3;
-            this.bChange.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ttHint.SetToolTip(this.bChange, "Change the selected title");
-            this.bChange.UseVisualStyleBackColor = true;
-            this.bChange.Click += new System.EventHandler(this.bChange_Click);
+            this.btnDeleteAlwaysList.Location = new System.Drawing.Point(185, 160);
+            this.btnDeleteAlwaysList.Name = "btnDeleteAlwaysList";
+            this.btnDeleteAlwaysList.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteAlwaysList.TabIndex = 22;
+            this.btnDeleteAlwaysList.Text = "Delete";
+            this.btnDeleteAlwaysList.UseVisualStyleBackColor = true;
+            this.btnDeleteAlwaysList.Click += new System.EventHandler(this.btnDeleteAlwaysList_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 405);
+            this.ClientSize = new System.Drawing.Size(418, 576);
             this.Controls.Add(this.chbDef);
             this.Controls.Add(this.chbDelOrNot);
             this.Controls.Add(this.button1);
@@ -417,6 +470,11 @@
         private System.Windows.Forms.CheckBox chbDef;
         private System.Windows.Forms.ToolTip ttHint;
         private System.Windows.Forms.Button bCancel;
+        private System.Windows.Forms.ListBox lbAlwaysDelete;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnAddAlwaysDelete;
+        private System.Windows.Forms.Button btnDeleteAlwaysList;
+        private System.Windows.Forms.TextBox tbAddAlwaysDelete;
     }
 }
 
